@@ -610,7 +610,7 @@ Next, extend your REPL so that the user can (repeatedly)
 enter expressions that then get parsed and evaluated, with
 the results printed back.
 
-**Don't worry about parsing `handle` and `try-catch` -- just the older constructs.**
+**Don't worry about parsing `throw` and `try-catch` -- just the older constructs.**
 
 When you are done you should see the following behavior:
 
@@ -711,7 +711,8 @@ As with "evaluating expressions" you can then enter the expression
 
 which should get evaluated and the result `25` is printed out.
 
-**HINT:** You can assume that each `load` wipes out all previous
-definitions, except those in `prelude`. The function `doLoad` may
-be useful, but to use it you will have to complete the implementation
-of `defsEnv`.
+You can assume that each `load` wipes out all previous definitions,
+except those in `prelude`.
+
+**HINT:** The function `doLoad` may be useful, but to use it you will
+have to **complete the implementation of `defsEnv`.

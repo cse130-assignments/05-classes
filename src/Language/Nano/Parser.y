@@ -75,6 +75,7 @@ Top  : Def                        { [$1] }
 
 Def  : ID '=' Expr                 { ($1, $3) }
 
+-- don't replace Top with the one from the previous assignment!
 
 Expr : TNUM                        { EInt $1 }
 

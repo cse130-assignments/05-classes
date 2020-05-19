@@ -51,7 +51,7 @@ data Value
   | VBool Bool
   | VClos Env Id Expr
   | VNil
-  | VPair Value Value
+  | VCons Value Value
   | VErr  String
   | VPrim (Value -> Value)
 
@@ -61,7 +61,7 @@ instance Eq Value where
   (VInt x1)     == (VInt x2)     = x1 == x2
   (VBool x1)    == (VBool x2)    = x1 == x2
   VNil          == VNil          = True
-  (VPair x1 y1) == (VPair x2 y2) = x1 == x2 && y1 == y2
+  (VCons x1 y1) == (VCons x2 y2) = x1 == x2 && y1 == y2
   _             == _             = False
 
 -- instance Show Binop where
@@ -90,7 +90,7 @@ valueString :: Value -> String
 valueString (VInt i)        = printf "%d" i
 valueString (VBool b)       = printf "%s" (show b)
 valueString (VClos env x v) = printf "<<%s, \\%s -> %s>>" (envString env) x (show v)
-valueString (VPair v w)     = printf "(%s : %s)" (show v) (show w)
+valueString (VCons v w)     = printf "(%s : %s)" (show v) (show w)
 valueString (VErr s)        = printf "ERROR: %s" s
 valueString VNil            = "[]"
 valueString (VPrim _)       = "<<primitive-function>>"
@@ -131,4 +131,4 @@ exprList :: [Expr] -> Expr
 exprList = foldr (EBin Cons) ENil
 
 valueList :: [Value] -> Value
-valueList = foldr VPair VNil
+valueList = foldr VCons VNil
