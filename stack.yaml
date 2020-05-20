@@ -17,6 +17,16 @@ flags: {}
 # Extra package databases containing global packages
 extra-package-dbs: []
 
+# Allow users who don't own the .stack dir to use stack. (This is important for
+# running on ieng6)
+allow-different-user: true
+
+#      -O0: turn off optimizations
+# -dynamic: stop linker from static linking, which is slow. we don't need portability
+#       -j: use more cores
+ghc-options:
+  "$locals": -O0 -dynamic -j
+
 # Control whether we use the GHC we find on the path
 # system-ghc: true
 
