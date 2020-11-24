@@ -31,11 +31,7 @@ with suitable Haskell implementations.
 
 ## Assignment Testing and Evaluation
 
-<!--
-Your functions/programs **must** compile and run on `ieng6.ucsd.edu`.
--->
-
-Most of the points, will be awarded automatically, by
+All of the points, will be awarded automatically, by
 **evaluating your functions against a given test suite**.
 
 [Tests.hs](/tests/Test.hs) contains a very small suite
@@ -72,11 +68,19 @@ but you will not be graded on this.
 
 ## Submission Instructions
 
-To submit your code, just do:
+Submit your code via the HW-5 assignment on Gradescope.
+You must submit a single zip file containing a single directory with your repository inside.
+A simple way to create this zip file is:
 
-```bash
-$ make turnin
-```
+- Run `git push` to push your local changes to your private fork of the assignment repository
+- Navigate to your private fork on github and download source code as a zip
+
+Please *do not* include the `.stack-work` or the `_MACOSX` folder into the submission.
+
+**Note:** Upon submission, Gradescope will only test your code on the *small public test suite*,
+so it will show maximum XX/255 points.
+After the deadline, we will regrade your submission on the full private test suite
+and you will get your full points.
 
 ## Problem 1: Sets via Binary Search Trees
 
@@ -615,7 +619,7 @@ the results printed back.
 When you are done you should see the following behavior:
 
 ```sh
-rjhala@borscht ~/t/1/a/05-classes (master)> make repl
+polikarn@lena ~/t/1/a/05-classes (master)> make repl
 ...
 ------------------------------------------------------------
 -------- The NANO Interpreter v.0.0.0.0 --------------------
