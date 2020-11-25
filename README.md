@@ -77,11 +77,6 @@ A simple way to create this zip file is:
 
 Please *do not* include the `.stack-work` or the `_MACOSX` folder into the submission.
 
-**Note:** Upon submission, Gradescope will only test your code on the *small public test suite*,
-so it will show maximum XX/255 points.
-After the deadline, we will regrade your submission on the full private test suite
-and you will get your full points.
-
 ## Problem 1: Sets via Binary Search Trees
 
 For this problem, you will use Haskell's data types to
