@@ -31,7 +31,7 @@ upstream:
 	git remote add upstream https://github.com/cse130-assignments/05-classes.git
 
 update:
-	git pull upstream master
+	git pull upstream master --allow-unrelated-histories
 
 ghci:
-	$(STACK) exec -- ghci
+	$(STACK) ghci
