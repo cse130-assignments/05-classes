@@ -515,7 +515,7 @@ Implementing the `EThr` case itself is not difficult,
 the challenge is to update the old cases so that an exception 
 is always propagated through the evaluator
 (e.g. so that the second test case above returns `1` and not `3`).
-Remember that `Either` is a monad, and use monad operations to implement this!
+Remember that `Either` is a monad, and **use monad operations** (not `case` expressions!) to implement this.
 
 
 ### (30 points): Catch
