@@ -41,7 +41,7 @@ doEval env s = (print =<< execEnvString env s) `catch` (putStrLn . errMsg)
 --------------------------------------------------------------------------------
 doUnknown :: IO () 
 --------------------------------------------------------------------------------
-doUnknown = putStrLn "I'm sorry Dave, I'm sorry I can't do that..."
+doUnknown = putStrLn "I'm sorry Dave, I'm afraid I can't do that..."
 
 --------------------------------------------------------------------------------
 doRun :: FilePath -> IO ()
