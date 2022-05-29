@@ -77,6 +77,13 @@ binTest :: Score -> BinCmd -> TestTree
 binTest sc b  = scoreTest' sc (act, (), True, bcPoints b, bcName b) 
   where act _ = mkBinTest (bcCmd b) (bcInF b) (bcExpF b) 
 
+replaceChar :: Char -> Char -> String -> String
+replaceChar a b = map go
+ where
+  go c
+    | c == a = b
+    | otherwise = c
+
 mkBinTest execS inF expF = do
   hSetBuffering stdout LineBuffering -- or even NoBuffering
   withFile log WriteMode $ \h -> do
@@ -84,7 +91,9 @@ mkBinTest execS inF expF = do
     c          <- waitForProcess ph
     expected   <- readFile expF
     actual     <- readFile log
-    return (expected == actual)
+    if (filter (/='\n') expected == filter (/='\n') actual) || (replaceChar 'λ' '\\' expected == actual)
+        then return True
+        else return False
   where
     log  = inF <.> "log"
     cmd  = printf "%s < %s" execS inF
