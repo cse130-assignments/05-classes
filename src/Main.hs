@@ -4,6 +4,10 @@ import           Language.Nano.Repl
 import           Text.Printf
 import           GHC.IO.Encoding
 
+-- https://util.unicode.org/UnicodeJsps/character.jsp?a=03BB
+lambda :: String
+lambda = "\x03BB"
+
 main :: IO ()                             
 main = do
   setLocaleEncoding utf8
