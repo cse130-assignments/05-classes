@@ -68,14 +68,12 @@ but you will not be graded on this.
 
 ## Submission Instructions
 
-Submit your code via the HW-5 assignment on Gradescope.
-You must submit a single zip file containing a single directory with your repository inside.
-A simple way to create this zip file is:
+Submit your code via the HW-5 assignment on Gradescope. Connect your Github
+account to Gradescope and select your repo. If you're in a group, don't forget
+to add your partner to the submission!
 
-- Run `git push` to push your local changes to your private fork of the assignment repository
-- Navigate to your private fork on github and download source code as a zip
-
-Please *do not* include the `.stack-work` or the `_MACOSX` folder into the submission.
+Detailed instructions on how to submit your code directly from the Git repo can
+be found on Piazza.
 
 ## Problem 1: Sets via Binary Search Trees
 
@@ -450,17 +448,20 @@ The helper function `evalE` has the type:
 evalE :: Env -> Expr -> Either Value Value
 ```
 
+**Note:** You should not change your type errors from HW4, those should still be
+`throw`ing a type error with the `throw` method. This new mechanism only occurs
+when an expression explicitly has an `EThr`.
+
 ### (55 points): Copy and Update
 
-First, copy and update your old code from
+First, we'll copy and update your old code from HW4 into HW5.
 
-- `Lexer.x`
-- `Parser.y`
-- `Eval.hs`
-
-`Lexer.x` can be copied entirely. For `Parser.y`, only copy the
-parts you wrote - some of the other starter code has changed.
-For `Eval.hs`, copy `evalOp`, `lookupId`, and `prelude`, and
+- `Lexer.x` can be copied entirely.
+- For `Parser.y`, *only copy the parts you wrote (Expr and any other
+  nonterminals you added)* - some of the other starter code has changed.
+  - Most notably, *this homework has new definitions for Top and Def - do not
+    replace them with the HW4 definitions.*
+- For `Eval.hs`, copy `evalOp`, `lookupId`, and `prelude`, and
 adapt your `eval` implementation to become the _first 9_ cases
 of `evalE`.
 
