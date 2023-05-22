@@ -569,11 +569,9 @@ main = error "TBD:main"
 
 which is the top-level `IO` _recipe_ that Haskell runs as an "app".
 
-However, there are lots of _very useful_ functions in
+However, there are lots of _very useful_ functions in [Repl.hs](/src/Language/Nano/Repl.hs) that we suggest you understand (and complete the implementation of where necessary.)
 
-- [Repl.hs](/src/Language/Nano/Repl.hs)
-
-that we suggest you understand (and complete the implementation of where necessary.)
+ We've also provided the hex representation of the "λ" character as the String `lambda` in Main.hs. If you are running into issues with the "λ", please make sure you have not modified the line `setLocaleEncoding utf8` from the starter code - this must be the first line that runs in `main`.
 
 ### (5 points): Quit
 
