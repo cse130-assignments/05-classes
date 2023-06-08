@@ -160,7 +160,9 @@ to test our property on a bunch of random inputs:
 ```
 
 Make sure that you get this result.
-Otherwise, debug your `build` function.
+Otherwise, take a look at the code of`prop_build`,
+figure out what behavior it expect to see
+and then debug your `build` function.
 
 ### (10 points): Contains
 
@@ -367,7 +369,10 @@ When you are done you should see this behavior
 +++ OK, passed 100 tests.
 ```
 
-`removeMin` should throw an error if given an empty tree.
+If the given tree is empty, `removeMin` should throw an error
+```haskell
+error “error string here”
+```
 
 ### (20 points): Remove
 
