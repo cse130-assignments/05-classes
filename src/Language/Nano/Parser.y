@@ -38,13 +38,13 @@ import Control.Exception
     ID    { ID _ $$  }
     '\\'  { LAM _    }
     '->'  { ARROW _  }
-    '='   { EQB _    }
+    '='   { EQL _    }
     '+'   { PLUS _   }
     '-'   { MINUS _  }
     '*'   { MUL _    }
     '&&'  { AND _    }
     '||'  { OR  _    }
-    '=='  { EQL _    }
+    '=='  { EQB _    }
     '/='  { NEQ _    }
     '<'   { LESS _   }
     '<='  { LEQ _    }
