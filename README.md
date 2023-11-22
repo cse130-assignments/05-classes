@@ -462,20 +462,21 @@ First, we'll copy and update your old code from HW4 into HW5.
   - Most notably, *this homework has new definitions for Top and Def - do not
     replace them with the HW4 definitions.*
 - For `Eval.hs`, copy `evalOp`, `lookupId`, and `prelude`, and
-adapt your `eval` implementation to become the _first 9_ cases
+adapt your `eval` implementation to become the _first 10_ cases
 of `evalE`.
 
 ```haskell
 evalE :: Env -> Expr -> Either Value Value
-evalE env (EInt i)       = error "TBD"
-evalE env (EBool b)      = error "TBD"
-evalE env (EVar x)       = error "TBD"
-evalE env (EBin o e1 e2) = error "TBD"
-evalE env (EIf c t e)    = error "TBD"
-evalE env (ELet x e1 e2) = error "TBD"
-evalE env (EApp e1 e2)   = error "TBD"
-evalE env (ELam x e)     = error "TBD"
-evalE env ENil           = error "TBD"
+evalE env (EInt i)                = error "TBD"
+evalE env (EBool b)               = error "TBD"
+evalE env (EVar x)                = error "TBD"
+evalE env (EBin o e1 e2)          = error "TBD"
+evalE env (EIf c t e)             = error "TBD"
+evalE env (ELet f (ELam x e1) e2) = error "TBD"
+evalE env (ELet x e1 e2)          = error "TBD"
+evalE env (EApp e1 e2)            = error "TBD"
+evalE env (ELam x e)              = error "TBD"
+evalE env ENil                    = error "TBD"
 ```
 
 When you are done, your old tests should pass, that is the command
@@ -569,9 +570,15 @@ main = error "TBD:main"
 
 which is the top-level `IO` _recipe_ that Haskell runs as an "app".
 
-However, there are lots of _very useful_ functions in [Repl.hs](/src/Language/Nano/Repl.hs) that we suggest you understand (and complete the implementation of where necessary.)
+However, there are lots of _very useful_ functions in
+[Repl.hs](/src/Language/Nano/Repl.hs) that we suggest you understand (and
+complete the implementation of where necessary.)
 
- We've also provided the hex representation of the "λ" character as the String `lambda` in Main.hs. If you are running into issues with the "λ", please make sure you have not modified the line `setLocaleEncoding utf8` from the starter code - this must be the first line that runs in `main`. If you are still having issues, you can use "\\" instead of the lambda.
+ We've also provided the hex representation of the "λ" character as the String
+`lambda` in Main.hs. If you are running into issues with the "λ", please make
+sure you have not modified the line `setLocaleEncoding utf8` from the starter
+code - this must be the first line that runs in `main`. If you are still having
+issues, you can use "\\" instead of the lambda.
 
 ### (5 points): Quit
 

@@ -1,5 +1,5 @@
 module Language.Nano.Eval
-  ( defsFile 
+  ( defsFile
   , execFile, execString, execEnvString, execExpr
   , eval, lookupId, prelude
   , parse
@@ -7,8 +7,7 @@ module Language.Nano.Eval
   )
   where
 
-import           System.Directory (doesFileExist)
-import           Control.Exception (throw, catch)
+import           Control.Exception (throw, catch, IOException)
 import           Language.Nano.Types
 import qualified Language.Nano.Parser as Parser
 
@@ -23,10 +22,9 @@ execFile :: FilePath -> IO Value
 execFile f = (safeRead f >>= execString) `catch` exitError
 
 safeRead :: FilePath -> IO String
-safeRead f = do
-  b <- doesFileExist f
-  if b then readFile f 
-       else throw (Error ("unknown file: " ++ f))
+safeRead f =
+  readFile f `catch` \ e ->
+    throw (Error ("unable to read file " ++ f ++ ": " ++ show (e :: IOException)))
 
 --------------------------------------------------------------------------------
 execString :: String -> IO Value
@@ -184,25 +182,26 @@ exitError (Error msg) = return (VErr msg)
 --------------------------------------------------------------------------------
 eval :: Env -> Expr -> Value
 --------------------------------------------------------------------------------
-eval env e = case evalE env e of 
+eval env e = case evalE env e of
   Left exn  -> exn
   Right val -> val
 
 --------------------------------------------------------------------------------
 evalE :: Env -> Expr -> Either Value Value
 --------------------------------------------------------------------------------
-evalE env (EInt i)       = error "TBD"
-evalE env (EBool b)      = error "TBD" 
-evalE env (EVar x)       = error "TBD"
-evalE env (EBin o e1 e2) = error "TBD" 
-evalE env (EIf c t e)    = error "TBD" 
-evalE env (ELet x e1 e2) = error "TBD" 
-evalE env (EApp e1 e2)   = error "TBD" 
-evalE env (ELam x e)     = error "TBD" 
-evalE env ENil           = error "TBD" 
+evalE env (EInt i)                = error "TBD"
+evalE env (EBool b)               = error "TBD"
+evalE env (EVar x)                = error "TBD"
+evalE env (EBin o e1 e2)          = error "TBD"
+evalE env (EIf c t e)             = error "TBD"
+evalE env (ELet f (ELam x e1) e2) = error "TBD"
+evalE env (ELet x e1 e2)          = error "TBD"
+evalE env (EApp e1 e2)            = error "TBD"
+evalE env (ELam x e)              = error "TBD"
+evalE env ENil                    = error "TBD"
 
-evalE env (EThr e)       = error "TBD" 
-evalE env (ETry e1 x e2) = error "TBD" 
+evalE env (EThr e)                = error "TBD"
+evalE env (ETry e1 x e2)          = error "TBD"
 
 --------------------------------------------------------------------------------
 -- | Unit tests for `throw`
@@ -217,8 +216,8 @@ evalE env (ETry e1 x e2) = error "TBD"
 
 -- >>> let ex_1_2   = EBin Plus (EInt 1) (EInt 2)
 -- >>> let ex_t1_2  = EBin Plus (EThr (EInt 1)) (EInt 2)
--- >>> let ex_1_t2  = EBin Plus (EInt 1) (EThr (EInt 2)) 
--- >>> let ex_t1_t2 = EBin Plus (EThr (EInt 1)) (EThr (EInt 2)) 
+-- >>> let ex_1_t2  = EBin Plus (EInt 1) (EThr (EInt 2))
+-- >>> let ex_t1_t2 = EBin Plus (EThr (EInt 1)) (EThr (EInt 2))
 -- >>> let ex_t12   = EThr (EBin Plus (EInt 1) (EInt 2))
 -- >>> let ex_tt12  = EThr (EBin Plus (EInt 1) (EThr (EInt 2)))
 

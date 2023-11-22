@@ -48,7 +48,8 @@ data Expr
 data Value
   = VInt  Int
   | VBool Bool
-  | VClos Env Id Expr
+  | VClos   Env Id Expr
+  | VRec Id Env Id Expr
   | VNil
   | VCons Value Value
   | VErr  String
@@ -85,13 +86,14 @@ binopString Or    = "||"
 binopString Cons  = ":"
 
 valueString :: Value -> String
-valueString (VInt i)        = printf "%d" i
-valueString (VBool b)       = printf "%s" (show b)
-valueString (VClos env x v) = printf "<<%s, \\%s -> %s>>" (envString env) x (show v)
-valueString (VCons v w)     = printf "(%s : %s)" (show v) (show w)
-valueString (VErr s)        = printf "ERROR: %s" s
-valueString VNil            = "[]"
-valueString (VPrim _)       = "<<primitive-function>>"
+valueString (VInt i)            = printf "%d" i
+valueString (VBool b)           = printf "%s" (show b)
+valueString (VClos env x v)     = printf "<<%s, \\%s -> %s>>" (envString env) x (show v)
+valueString (VRec name env x v) = printf "<<%s: %s, \\%s -> %s>>" name (envString env) x (show v)
+valueString (VCons v w)         = printf "(%s : %s)" (show v) (show w)
+valueString (VErr s)            = printf "ERROR: %s" s
+valueString VNil                = "[]"
+valueString (VPrim _)           = "<<primitive-function>>"
 
 envString :: Env -> String
 envString env = printf "{ %s }" (L.intercalate ", " bs)
@@ -110,7 +112,6 @@ exprString (ELam x e)     = printf "\\%s -> %s" x (show e)
 exprString ENil           = "[]"
 exprString (ETry e1 x e2) = printf "try (%s) handle %s => %s" (show e1) x (show e2)
 exprString (EThr e)       = printf "(throw %s)" (show e)
-
 
 --------------------------------------------------------------------------------
 class Nano a where
